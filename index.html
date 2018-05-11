@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Untitled Document</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/dados.js"></script>
+    <script>
+        var max = produtos.length;
+        var min = 0;
+        var used = [];//array de valores ja utilizados
+        
+
+        function loadPhrase() {
+            var val = randomNumber();
+               if(used.includes(val) == true){
+                   //alert(val+" - True"); se o numero sorteado ja foi sorteado anteriormente, chame a funcao novamente
+                   loadPhrase();
+               }
+             else{
+                 //alert(val+" - False"); caso seja falso, adicione os textos a div
+                 
+              document.getElementById("birl").innerHTML = produtos[val].ask;//adiciona valor sorteado a div
+              // BACKUP document.getElementById("birl").innerHTML += "<br/>" + produtos[val].a1;
+                 loadAnswer(val);
+                //alert(val+ " False");
+            }
+            
+            
+        //document.getElementById("birl").innerHTML = val;
+        
+            used.push(val);//adiciona valor ao array used
+        }
+            
+        function loadAnswer(i) {
+            //var j = Math.floor(Math.random()*(4-1)+1); sortear ordem de respostas
+                document.getElementById("resp").innerHTML= "<button class='btn' id='btn" + i + "' href='#' value='"+produtos[i].a1+"'>"+ produtos[i].a1 + "</button>"
+                    +"<button class='btn' id='btn" + i + "' href='#' value='"+produtos[i].a2+"'>"+ produtos[i].a2 + "</button>"
+                    +"<button class='btn' id='btn" + i + "' href='#' value='"+produtos[i].a3+"'>"+ produtos[i].a3 + "</button>"
+                    +"<button class='btn' id='btn" + i + "' href='#' value='"+produtos[i].a4+"'>"+ produtos[i].a4 + "</button><br/>"
+            var answer = produtos[i].answer;
+            verificar(answer);
+            }
+
+        function randomNumber() {
+            return Math.floor(Math.random() * (max - min) + min); //gerar um numero entre as var min e max
+        }
+        
+         function verificar(resposta) {
+            $(".btn").click(function(event) {
+                texto = $(this).attr("value");
+                if(texto == resposta){
+                    alert("OK");
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="loadPhrase()">Teste</button>
+    <div id="birl"></div>
+    <div id="resp"></div>
+</body>
+
+</html>
