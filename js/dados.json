@@ -1,8 +1,0 @@
-{   
-    "produtos":[
-        {"dd":"Iphone X","img": "iphonex.jpg", "url":"iphone-x.html"},
-        {"nome":"Galaxy S8","img": "galaxy_s8.jpg", "url":"galaxy_s8.html"},
-        {"nome":"Zenfone 5","img": "zenfone5.jpg", "url":"zenfone5.html"}
-    ]
-    
-}
