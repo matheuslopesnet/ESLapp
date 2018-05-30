@@ -1,3 +1,4 @@
+//variaveis globais
 var max = questions.length;
 var min = 0;
 var used = []; //array de valores ja utilizados
@@ -5,26 +6,31 @@ var respondido;
 var pontos = 0;
 var vidas = 3;
 
+//chama funcao de frase ao carregar a pagina
 $(document).ready(function () {
     loadPhrase();
 });
 
+//chama funcao de sorteio e carrega uma frase conforme array mencionada no doc html
 function loadPhrase() {
     var val = randomNumber();
     if (used.includes(val) == true) {
         loadPhrase();
     } else {
+        if(vidas < 1){gameover()}
+        else{
         document.getElementById("birl").innerHTML = questions[val].ask; //adiciona valor sorteado a div
         // BACKUP document.getElementById("birl").innerHTML += "<br/>" + questions[val].a1;
         respondido = false;
         loadAnswer(val);
-        if(vidas < 1){alert("Game Over");location.reload()}
+        
         loadVidas();
-    }
+    }}
 
     used.push(val); //adiciona valor ao array used
 }
 
+//carrega respostas disponiveis
 function loadAnswer(i) {
     //var j = Math.floor(Math.random()*(4-1)+1); sortear ordem de respostas
     document.getElementById("resp").innerHTML = "<button class='btn button button-raised' id='btn0' href='#' value='" + questions[i].a1 + "'>" + questions[i].a1 + "</button>" +
@@ -35,10 +41,12 @@ function loadAnswer(i) {
     verificar(i);
 }
 
+//sorteia numero
 function randomNumber() {
     return Math.floor(Math.random() * (max - min) + min); //gerar um numero entre as var min e max
 }
 
+//verifica resposta se esta correta
 function verificar(i) {
     $(".btn").click(function (event) {
         resposta = questions[i].answer;
@@ -67,7 +75,7 @@ function verificar(i) {
     });
 }
 
-
+//sistema de vidas
 function loadVidas(){
     var contavida = vidas;
     var hearts ="";
@@ -78,26 +86,34 @@ function loadVidas(){
      
 }
 
-//framework7
-// Framework7 App main instance
+//alerta framework7
 var app = new Framework7({
-    root: '#app', // App root element
-    id: 'io.framework7.testapp', // App bundle ID
-    name: 'Tela', // App name
-    theme: 'auto', // Automatic theme detection
-
+    root: '#app',
+    id: 'io.framework7.testapp', 
+    name: 'ESLApp',
+    theme: 'auto', 
 });
 
-// Init/Create main view
-
-
-// Alert
+//alerta
 function olar(texto, resposta, pontos) {
-    //var username = $$('#my-login-screen [name="username"]').val();
-
-    // Close login screen
-    app.loginScreen.close('#my-login-screen');
-
     // Alert username and password
     app.dialog.alert('Escolha: ' + texto + '<br/> Resposta: ' + resposta + '<br/> Pontos: ' + pontos);
 }
+
+
+
+function gameover(){
+    dynamicPopup.open();
+    alert('pontos ' + pontos + ' perguntas ' + (pontos+3));
+}
+
+
+var dynamicPopup = app.popup.create({
+  content: '<div class="popup">'+
+              '<div class="block">'+
+                '<h1>Pontuação final</h1>'+
+                'Acertei '+ pontos + ' de ' + (pontos+3) + ' perguntas' + 
+                '<p><a href="#" class="link popup-close">Fechar</a></p>'+
+              '</div>'+
+            '</div>',
+});
