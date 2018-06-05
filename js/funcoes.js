@@ -14,6 +14,9 @@ $(document).ready(function () {
 //chama funcao de sorteio e carrega uma frase conforme array mencionada no doc html
 function loadPhrase() {
     var val = randomNumber();
+   // if(used.length = questions.length){
+    //    gameover();
+ //   }
     if (used.includes(val) == true) {
         loadPhrase();
     } else {
@@ -25,9 +28,10 @@ function loadPhrase() {
         loadAnswer(val);
         
         loadVidas();
+        used.push(val); //adiciona valor ao array used
     }}
 
-    used.push(val); //adiciona valor ao array used
+    
 }
 
 //carrega respostas disponiveis
@@ -102,18 +106,16 @@ function olar(texto, resposta, pontos) {
 
 
 
+
 function gameover(){
-    dynamicPopup.open();
-    alert('pontos ' + pontos + ' perguntas ' + (pontos+3));
-}
-
-
-var dynamicPopup = app.popup.create({
+    var dynamicPopup = app.popup.create({
   content: '<div class="popup">'+
               '<div class="block">'+
-                '<h1>Pontuação final</h1>'+
-                'Acertei '+ pontos + ' de ' + (pontos+3) + ' perguntas' + 
+                '<h1>Pontuação</h1>'+
+                'Você acertou '+ pontos + ' de ' + (used.length) + ' perguntas' + 
                 '<p><a href="#" class="link popup-close">Fechar</a></p>'+
               '</div>'+
             '</div>',
 });
+    dynamicPopup.open();
+}

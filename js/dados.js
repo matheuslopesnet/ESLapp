@@ -1,5 +1,5 @@
 var questions = [
-        {"id":"1","ask":"Qual seu nome?","a1":"My name is John","a2":"My name are John","a3":"My name John","a4":"Me name is John","answer":"My name is John"},
+        {"id":"1","ask":"Do you have time to study every day?","a1":"I study every day","a2":"I have time","a3":"Yes, I do","a4":"No, I am not","answer":"Yes, I do"},
         {"id":"2","ask":"Blabla?","a1":"Resposta errada","a2":"Resposta errada","a3":"Resposta errada","a4":"Resposta certa","answer":"Resposta certa"},
         {"id":"3","ask":"Pergunta3?","a1":"Resposta certa","a2":"Resposta errada","a3":"Resposta errada","a4":"Resposta errada","answer":"Resposta certa"},
         {"id":"4","ask":"Pergunta4?","a1":"Resposta certa","a2":"Resposta errada","a3":"Resposta errada","a4":"Resposta errada","answer":"Resposta certa"},

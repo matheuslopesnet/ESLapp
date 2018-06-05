@@ -48,3 +48,16 @@
 #footer img{
     margin: 10px;
 }
+
+.popup{
+    background-color: #2196F3;
+    color: #fff;
+}
+.popup-close{
+    width: 150px;
+    height: 30px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #fff;
+    color: #2196F3;
+    
+}
